@@ -5,12 +5,11 @@ const config = require('./config')
 const authEvents = require('./auth/events.js')
 const uploadEvents = require('./uploads/events')
 
-
 $(() => {
   setAPIOrigin(location, config)
   authEvents.addHandlers()
   $('.initial-hide').hide()
-    $('#multipart-form-data').on('submit', uploadEvents.createUploadMultiPart)
+  $('#multipart-form-data').on('submit', uploadEvents.createUploadMultiPart)
 })
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
