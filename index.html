@@ -12,14 +12,27 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <!-- User auth forms -->
 
+      <nav class="nav navbar" id="topnav">
+      <ul>
+        <li class="title">
+          <h1>FileBucket</h1>
+        </li>
+          <!-- User auth forms modal -->
+        <li class="modal-button">
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn" class='btn btn-success'>Account</button>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+        <!-- auth content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
       <p id='message'></p>
   <section id='auth'>
 
     <form id="sign-up" class='secondary-hide'>
       <fieldset>
-        <h5>Sign up</h5>
+        <h4>Sign up</h4>
         <input type="text" name="credentials[email]" placeholder="Input email">
         <input type="password" name="credentials[password]" placeholder="Input password">
         <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
@@ -29,7 +42,7 @@
 
 
     <form id="sign-in" class='secondary-hide'>
-      <h5 class='secondary-hide'>Sign In</h5>
+      <h4 class='secondary-hide'>Sign In</h4>
       <input type="text" name="credentials[email]" placeholder="Input email">
       <input type="password" name="credentials[password]" placeholder="Input password">
       <button type="submit" class="btn btn-success">Submit</button>
@@ -37,10 +50,10 @@
 
 
     <form id="change-password" class='initial-hide'>
-      <h5 class='initial-hide'>Change Password</h5>
+      <h4 class='initial-hide'>Change Password</h4>
       <input type="password" name="passwords[old]" placeholder="Input old password">
       <input type="password" name="passwords[new]" placeholder="Input new password">
-      <button type="submit" class="btn btn-warning">Submit</button>
+      <button type="submit" class="btn btn-success">Submit</button>
     </form>
 
     <form id="sign-out" class='initial-hide'>
@@ -50,9 +63,13 @@
     </form>
 
   </section>
-
+  </div>
+      </div>
+      </li>
+    </ul>
+  </nav>
       <!-- File upload form -->
-      <form id="application-x-www-form-data">
+      <form id="application-x-www-form-data" class="initial-hide">
           <fieldset>
             <legend>enctype unset</legend>
             <label>
@@ -66,7 +83,7 @@
             <input type="submit" name="submit" value="Upload">
           </fieldset>
         </form>
-        <form id="multipart-form-data" enctype="multipart/form-data">
+        <form  class="initial-hide" id="multipart-form-data" enctype="multipart/form-data">
           <fieldset>
             <legend>enctype="multipart/form-data"</legend>
             <label>

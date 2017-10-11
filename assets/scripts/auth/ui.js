@@ -13,12 +13,12 @@ const signUpSuccess = function (data) {
 const signInSuccess = function (data) {
   $('#message').show()
   $('#message').text('Successfully signed in!')
-  // $('.initial-hide').show()
-  // $('.secondary-hide').hide()
-  // $('#message').fadeOut(1800)
+  $('.initial-hide').show()
+  $('.secondary-hide').hide()
+  $('#message').fadeOut(1800)
   store.user = data.user
-  // $('input s[type=text]').val('')
-  // $('input[type=password]').val('')
+  $('input s[type=text]').val('')
+  $('input[type=password]').val('')
 }
 
 const changePasswordSuccess = function (data) {
@@ -39,9 +39,9 @@ const signOutSuccess = function (data) {
 
 const failure = function (error) {
   console.error(error)
-  // $('#message').show()
-  // $('#message').text('You messed up')
-  // $('#message').fadeOut(1800)
+  $('#message').show()
+  $('#message').text('You messed up')
+  $('#message').fadeOut(1800)
 }
 
 module.exports = {
