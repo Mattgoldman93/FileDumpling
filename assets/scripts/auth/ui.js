@@ -1,6 +1,7 @@
 'use strict'
 const store = require('../store')
-// const logic = require('../game/logic')
+const uploadApi = require('../uploads/api')
+const uploadUi = require('../uploads/ui')
 
 const signUpSuccess = function (data) {
   $('#message').show()
@@ -19,6 +20,10 @@ const signInSuccess = function (data) {
   store.user = data.user
   // $('input s[type=text]').val('')
   // $('input[type=password]').val('')
+
+  uploadApi.getUploads()
+    .then(uploadUi.onGetUploadsSuccess)
+    .catch(uploadUi.onGetUploadsFailure)
 }
 
 const changePasswordSuccess = function (data) {
