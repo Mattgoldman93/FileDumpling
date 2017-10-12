@@ -5,10 +5,7 @@ const api = require('./api')
 const showUploadsTemplate = require('../templates/uploads-table.handlebars')
 
 const success = function (data) {
-  $('.uploads-table').html('')
-  api.getUploads()
-    .then(onGetUploadsSuccess)
-    .catch(onGetUploadsFailure)
+  resetTable()
 }
 
 const error = function (error) {
@@ -19,6 +16,7 @@ const onGetUploadsSuccess = function (data) {
   const showUploadsHtml = showUploadsTemplate({ uploads: data.uploads })
   $('.uploads-table').append(showUploadsHtml)
   $('.edit-btn').on('click', onEditUpload)
+  $('.delete-btn').on('click', onDeleteUpload)
 }
 
 const onGetUploadsFailure = function (error) {
@@ -68,14 +66,51 @@ const onConfirmEdit = function (elementId, fileName, tags) {
 
 const onEditUploadSuccess = function (data) {
   console.log(data)
-  $('.uploads-table').html('')
-  api.getUploads()
-    .then(onGetUploadsSuccess)
-    .catch(onGetUploadsFailure)
+  resetTable()
 }
 
 const onEditUploadFailure = function (error) {
   console.log(error)
+}
+
+const onDeleteUpload = function () {
+  const elementId = $(this).parent().parent().attr('data-id')
+  $(this).parent().append('<button class="btn btn-danger confirm-delete-btn">Confirm</button>')
+  $(this).parent().append('<button class="btn btn-default cancel-delete-btn">Cancel</button>')
+  const editBtn = $(this).siblings()[0]
+  $(editBtn).remove()
+  $(this).remove()
+  $('.confirm-delete-btn').on('click', function () {
+    api.deleteUpload(elementId)
+      .then(onDeleteUploadSuccess)
+      .catch(onDeleteUploadFailure)
+  })
+  $('.cancel-delete-btn').on('click', function () {
+    $(this).siblings().each(function () {
+      $(this).remove()
+    })
+    $(this).parent().append('<button class="btn btn-info edit-btn">Edit</button>')
+    $(this).parent().append('<button class="btn btn-danger delete-btn">Delete</button>')
+    $('.edit-btn').on('click', onEditUpload)
+    $('.delete-btn').on('click', onDeleteUpload)
+    $(this).remove()
+  })
+}
+
+const onDeleteUploadSuccess = function (data) {
+  console.log(data)
+  resetTable()
+}
+
+const onDeleteUploadFailure = function (error) {
+  console.error(error)
+}
+
+const resetTable = function () {
+  $('.uploads-table').html('')
+  api.getUploads()
+    .then(onGetUploadsSuccess)
+    .catch(onGetUploadsFailure)
 }
 
 module.exports = {
