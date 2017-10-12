@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const config = require('../config')
 
 const createEnc = function (data) {
   return $.ajax({
@@ -13,7 +14,7 @@ const createMulti = function (formData) {
     headers: {
       authorization: 'Token token=' + store.user.token
     },
-    url: 'http://localhost:4741/uploads',
+    url: config.apiOrigin + '/uploads',
     method: 'POST',
     data: formData,
     processData: false,
@@ -21,7 +22,19 @@ const createMulti = function (formData) {
   })
 }
 
+const getUploads = function () {
+  const token = store.user.token
+  return $.ajax({
+    url: config.apiOrigin + '/uploads',
+    method: 'GET',
+    headers: {
+      authorization: 'Token token=' + token
+    }
+  })
+}
+
 module.exports = {
   createEnc,
-  createMulti
+  createMulti,
+  getUploads
 }
