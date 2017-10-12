@@ -1,9 +1,14 @@
 'use strict'
 
+const api = require('./api')
+
 const showUploadsTemplate = require('../templates/uploads-table.handlebars')
 
 const success = function (data) {
-  console.log('success data is:', data)
+  $('.uploads-table').html('')
+  api.getUploads()
+    .then(onGetUploadsSuccess)
+    .catch(onGetUploadsFailure)
 }
 
 const error = function (error) {
@@ -12,7 +17,7 @@ const error = function (error) {
 
 const onGetUploadsSuccess = function (data) {
   const showUploadsHtml = showUploadsTemplate({ uploads: data.uploads })
-  $('.table-body').append(showUploadsHtml)
+  $('.uploads-table').append(showUploadsHtml)
 }
 
 const onGetUploadsFailure = function (error) {
