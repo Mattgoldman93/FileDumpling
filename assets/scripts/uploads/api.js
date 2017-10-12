@@ -33,8 +33,21 @@ const getUploads = function () {
   })
 }
 
+const editUpload = function (id, data) {
+  const token = store.user.token
+  return $.ajax({
+    url: config.apiOrigin + '/uploads/' + id,
+    method: 'PATCH',
+    headers: {
+      authorization: 'Token token=' + token
+    },
+    data
+  })
+}
+
 module.exports = {
   createEnc,
   createMulti,
-  getUploads
+  getUploads,
+  editUpload
 }
