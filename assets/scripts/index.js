@@ -5,6 +5,23 @@ const config = require('./config')
 const authEvents = require('./auth/events.js')
 const uploadEvents = require('./uploads/events')
 
+// code for modal -- will be moved to separate file
+const modal = document.getElementById('myModal')
+const btn = document.getElementById('myBtn')
+const span = document.getElementsByClassName('close')[0]
+btn.onclick = function () {
+  modal.style.display = 'block'
+}
+span.onclick = function () {
+  modal.style.display = 'none'
+}
+window.onclick = function (event) {
+  if (event.target === modal) {
+    modal.style.display = 'none'
+  }
+}
+// end modal code
+
 $(() => {
   setAPIOrigin(location, config)
   authEvents.addHandlers()
