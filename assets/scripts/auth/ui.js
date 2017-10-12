@@ -18,6 +18,7 @@ const signInSuccess = function (data) {
   $('.secondary-hide').hide()
   $('#message').fadeOut(1800)
   store.user = data.user
+  $('#auth-modal').modal('hide')
 
   $('input s[type=text]').val('')
   $('input[type=password]').val('')
@@ -40,7 +41,10 @@ const signOutSuccess = function (data) {
   $('.initial-hide').hide()
   $('.secondary-hide').show()
   $('#message').fadeOut(1800)
+  $('#auth-modal').modal('hide')
   store.user = null
+
+  $('.uploads-table').html('')
 }
 
 const failure = function (error) {
