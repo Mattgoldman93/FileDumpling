@@ -60,8 +60,6 @@ const onEditUpload = function () {
   const tags = $(this).parent().siblings()[2]
   fileName.contentEditable = true
   tags.contentEditable = true
-  $('#message_02').show()
-  $('#message_02').text('File succesfully edited.').fadeOut(3000)
   $(fileName).css('background-color', 'rgba(255, 255, 0, 0.5)') // Show user editable fields
   $(tags).css('background-color', 'rgba(255, 255, 0, 0.5)')
   $(tags).html('')
@@ -104,7 +102,7 @@ const onConfirmEdit = function (elementId, fileName, tags) {
 const onEditUploadSuccess = function (data) {
   successSound.play()
   $('#message_02').show()
-  $('#message_02').text('Success on editing file.').fadeOut(3000)
+  $('#message_02').text('File successfully edited.').fadeOut(3000)
   resetTable()
 }
 
