@@ -3,12 +3,16 @@ const store = require('../store')
 const uploadApi = require('../uploads/api')
 const uploadUi = require('../uploads/ui')
 
+const resetFormFields = function () {
+  $('#sign-in').trigger('reset')
+  $('#change-password').trigger('reset')
+  $('#sign-up').trigger('reset')
+}
 const signUpSuccess = function (data) {
   $('#message').show()
   $('#message').text('Successfully signed up, go ahead and sign in!')
   $('#message').fadeOut(1800)
-  $('input[type=text]').val('')
-  $('input[type=password]').val('')
+  resetFormFields()
 }
 
 const signInSuccess = function (data) {
@@ -19,9 +23,7 @@ const signInSuccess = function (data) {
   $('#message').fadeOut(1800)
   store.user = data.user
   $('#auth-modal').modal('hide')
-
-  $('input s[type=text]').val('')
-  $('input[type=password]').val('')
+  resetFormFields()
 
   uploadApi.getUploads()
     .then(uploadUi.onGetUploadsSuccess)
@@ -32,7 +34,7 @@ const changePasswordSuccess = function (data) {
   $('#message').show()
   $('#message').text('Password changed!')
   $('#message').fadeOut(1800)
-  $('input[type=password]').val('')
+  resetFormFields()
 }
 
 const signOutSuccess = function (data) {
@@ -43,15 +45,15 @@ const signOutSuccess = function (data) {
   $('#message').fadeOut(1800)
   $('#auth-modal').modal('hide')
   store.user = null
-
   $('.uploads-table').html('')
+  resetFormFields()
 }
 
 const failure = function (error) {
-  console.error(error)
   $('#message').show()
   $('#message').text('You messed up')
   $('#message').fadeOut(1800)
+  resetFormFields()
 }
 
 module.exports = {
