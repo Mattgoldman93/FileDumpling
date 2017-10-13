@@ -6,21 +6,25 @@ const uploadUi = require('../uploads/ui')
 const signUpSuccess = function (data) {
   $('#message').show()
   $('#message').text('Successfully signed up, go ahead and sign in!')
-  $('#message').fadeOut(1800)
+  $('#message').fadeOut(5000)
   $('input[type=text]').val('')
   $('input[type=password]').val('')
 }
 
+const signUpFailure = function (error) {
+  console.error(error)
+  $('#message').show()
+  $('#message').text('Failure on signing up. E-mail and/or password already token. Try again.').fadeOut(5000)
+}
+
 const signInSuccess = function (data) {
   $('#message').show()
-  $('#message').text('Successfully signed in!')
+  $('#message').text('Successfully signed in!').fadeOut(5000)
   $('.initial-hide').show()
   $('.secondary-hide').hide()
-  $('#message').fadeOut(1800)
   store.user = data.user
   $('#auth-modal').modal('hide')
-
-  $('input s[type=text]').val('')
+  $('input[type=text]').val('')
   $('input[type=password]').val('')
 
   uploadApi.getUploads()
@@ -28,11 +32,23 @@ const signInSuccess = function (data) {
     .catch(uploadUi.onGetUploadsFailure)
 }
 
+const signInFailure = function (error) {
+  console.error(error)
+  $('#message').show()
+  $('#message').text('Failure on signing in. Try again.').fadeOut(5000)
+}
+
 const changePasswordSuccess = function (data) {
   $('#message').show()
   $('#message').text('Password changed!')
-  $('#message').fadeOut(1800)
+  $('#message').fadeOut(5000)
   $('input[type=password]').val('')
+}
+
+const changePasswordFailure = function (error) {
+  console.error(error)
+  $('#message').show()
+  $('#message').text('Failure on changing password. Try again.').fadeOut(5000)
 }
 
 const signOutSuccess = function (data) {
@@ -40,24 +56,27 @@ const signOutSuccess = function (data) {
   $('#message').text('Signed out!')
   $('.initial-hide').hide()
   $('.secondary-hide').show()
-  $('#message').fadeOut(1800)
+  $('#message').fadeOut(5000)
   $('#auth-modal').modal('hide')
   store.user = null
 
   $('.uploads-table').html('')
 }
 
-const failure = function (error) {
+const signOutFailure = function (error) {
   console.error(error)
   $('#message').show()
-  $('#message').text('You messed up')
-  $('#message').fadeOut(1800)
+  $('#message').text('Failure on signing out. Try Again.')
+  $('#message').fadeOut(5000)
 }
 
 module.exports = {
   signUpSuccess,
+  signUpFailure,
   signInSuccess,
+  signInFailure,
   changePasswordSuccess,
+  changePasswordFailure,
   signOutSuccess,
-  failure
+  signOutFailure
 }
