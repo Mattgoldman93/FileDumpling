@@ -13,6 +13,7 @@ const resetFormFields = function () {
 }
 
 const signUpSuccess = function (data) {
+  $('#sign-up').hide()
   $('#message').show()
   $('#message').text('Successfully signed up, go ahead and sign in!')
   successSound.play()
