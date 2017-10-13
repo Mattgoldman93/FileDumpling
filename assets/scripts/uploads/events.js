@@ -26,11 +26,8 @@ const createUploadMultiPart = function (event) {
     .then(uploadUi.success)
     .catch(uploadUi.error)
 }
-const addHandlers = function () {
-  $('#refresh').on('click', uploadUi.resetTable)
-}
+
 module.exports = {
-  addHandlers,
   createUploadEncoded,
   createUploadMultiPart
 }
