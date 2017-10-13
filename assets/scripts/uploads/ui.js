@@ -17,6 +17,12 @@ const onGetUploadsSuccess = function (data) {
   $('.uploads-table').append(showUploadsHtml)
   $('.edit-btn').on('click', onEditUpload)
   $('.delete-btn').on('click', onDeleteUpload)
+  $('.createdDate').each(function () {
+    $(this).html($(this).html().split('T')[0])
+  })
+  $('.updatedDate').each(function () {
+    $(this).html($(this).html().split('T')[0])
+  })
 }
 
 const onGetUploadsFailure = function (error) {
