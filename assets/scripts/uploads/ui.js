@@ -17,6 +17,7 @@ const onGetUploadsSuccess = function (data) {
   $('.uploads-table').append(showUploadsHtml)
   $('.edit-btn').on('click', onEditUpload)
   $('.delete-btn').on('click', onDeleteUpload)
+  $('#refresh').on('click', resetTable)
   $('.createdDate').each(function () {
     $(this).html($(this).html().split('T')[0])
   })
