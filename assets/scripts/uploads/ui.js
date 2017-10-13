@@ -6,6 +6,7 @@ const showUploadsTemplate = require('../templates/uploads-table.handlebars')
 
 const success = function (data) {
   resetTable()
+  $('#multipart-form-data').trigger('reset')
 }
 
 const error = function (error) {
