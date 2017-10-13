@@ -17,6 +17,19 @@ const onGetUploadsSuccess = function (data) {
   $('.uploads-table').append(showUploadsHtml)
   $('.edit-btn').on('click', onEditUpload)
   $('.delete-btn').on('click', onDeleteUpload)
+  $('.createdDate').each(function () {
+    $(this).html($(this).html().split('T')[0])
+  })
+  $('.updatedDate').each(function () {
+    $(this).html($(this).html().split('T')[0])
+  })
+  $('.hashtag').on('click', function () {
+    const value = $(this).html().replace(/#/g, '')
+    $('.uploads-table').html('')
+    api.getUploads(value)
+      .then(onGetUploadsSuccess)
+      .catch(onGetUploadsFailure)
+  })
 }
 
 const onGetUploadsFailure = function (error) {
@@ -31,6 +44,7 @@ const onEditUpload = function () {
   tags.contentEditable = true
   $(fileName).css('background-color', 'rgba(255, 255, 0, 0.5)') // Show user editable fields
   $(tags).css('background-color', 'rgba(255, 255, 0, 0.5)')
+  $(tags).html('')
   $(fileName).keydown(function (e) { // Prevent user from adding new lines in table
     if (e.which === 13) { // 13 --> enter key
       fileName.blur()
@@ -51,7 +65,10 @@ const onEditUpload = function () {
 
 const onConfirmEdit = function (elementId, fileName, tags) {
   const newFileName = $(fileName).html()
-  const newTags = $(tags).html()
+  let newTags = $(tags).html().replace(/[^a-z0-9 ]/gi, '').split(' ')
+  if (newTags[0] === '') {
+    newTags = null
+  }
   const data =
     {
       upload: {
