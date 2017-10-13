@@ -58,3 +58,7 @@ This day was also a good learning experience for our teamwork and problem solvin
 On the third day, our group focused on user interface and user experience. A majority of the efforts went into adding in functionality and messaging that improves the overall UX.
 
 Team 4KnClone: Aaron Vale, Matthew Goldman, Katherine Wu, Vitorio Paulo
+
+#### Future Possible Additions
+
+Other features we discussed implementing are a simple permissions system, that would allow multiple users to collaborate on a document, different button and form stylings, as well as the ability to delete files from the AWS bucket as well as the Mongo database.
