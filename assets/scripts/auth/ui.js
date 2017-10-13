@@ -3,6 +3,9 @@ const store = require('../store')
 const uploadApi = require('../uploads/api')
 const uploadUi = require('../uploads/ui')
 
+const successSound = $('#successSound')[0]
+const failureSound = $('#failureSound')[0]
+
 const resetFormFields = function () {
   $('#sign-in').trigger('reset')
   $('#change-password').trigger('reset')
@@ -12,6 +15,7 @@ const resetFormFields = function () {
 const signUpSuccess = function (data) {
   $('#message').show()
   $('#message').text('Successfully signed up, go ahead and sign in!')
+  successSound.play()
   $('#message').fadeOut(5000)
   resetFormFields()
 }
@@ -19,6 +23,7 @@ const signUpSuccess = function (data) {
 const signUpFailure = function () {
   $('#message').show()
   $('#message').text('Failure on signing up. E-mail and/or password already taken. Try again.').fadeOut(5000)
+  failureSound.play()
   resetFormFields()
 }
 
@@ -29,8 +34,9 @@ const signInSuccess = function (data) {
   $('.secondary-hide').hide()
   store.user = data.user
   $('#auth-modal').modal('hide')
+  successSound.play()
   resetFormFields()
-
+  
   uploadApi.getUploads()
     .then(uploadUi.onGetUploadsSuccess)
     .catch(uploadUi.onGetUploadsFailure)
@@ -39,12 +45,14 @@ const signInSuccess = function (data) {
 const signInFailure = function () {
   $('#message').show()
   $('#message').text('Failure on signing in. Try again.').fadeOut(5000)
+  failureSound.play()
   resetFormFields()
 }
 
 const changePasswordSuccess = function (data) {
   $('#message').show()
   $('#message').text('Password changed!')
+  successSound.play()
   $('#message').fadeOut(5000)
   resetFormFields()
 }
@@ -53,6 +61,7 @@ const changePasswordFailure = function () {
   $('#message').show()
   $('#message').text('Failure on changing password. Try again.').fadeOut(5000)
   resetFormFields()
+  failureSound.play()
 }
 
 const signOutSuccess = function (data) {
@@ -64,7 +73,7 @@ const signOutSuccess = function (data) {
   $('#auth-modal').modal('hide')
   store.user = null
   $('.uploads-table').html('')
-  resetFormFields()
+  successSound.play()
 }
 
 const signOutFailure = function () {
@@ -72,6 +81,7 @@ const signOutFailure = function () {
   $('#message').text('Failure on signing out. Try Again.')
   $('#message').fadeOut(5000)
   resetFormFields()
+  failureSound.play()
 }
 
 module.exports = {

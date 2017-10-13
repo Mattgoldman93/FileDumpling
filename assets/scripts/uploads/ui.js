@@ -4,7 +4,11 @@ const api = require('./api')
 
 const showUploadsTemplate = require('../templates/uploads-table.handlebars')
 
+const failureSound = $('#failureSound')[0]
+const successSound = $('#successSound')[0]
+ 
 const success = function (data) {
+  successSound.play()
   resetTable()
   $('#message_02').show()
   $('#message_02').text('Successfully uploaded a file!').fadeOut(5000)
@@ -14,6 +18,7 @@ const success = function (data) {
 const error = function () {
   $('#message_02').show()
   $('#message_02').text('Error on uploading a file! Try again.').fadeOut(5000)
+  failureSound.play()
 }
 
 const onGetUploadsSuccess = function (data) {
@@ -99,6 +104,7 @@ const onConfirmEdit = function (elementId, fileName, tags) {
 }
 
 const onEditUploadSuccess = function (data) {
+  successSound.play()
   $('#message_02').show()
   $('#message_02').text('Success on editing file.').fadeOut(5000)
   resetTable()
@@ -107,6 +113,7 @@ const onEditUploadSuccess = function (data) {
 const onEditUploadFailure = function () {
   $('#message_02').show()
   $('#message_02').text('Error on editing file. Try again.').fadeOut(5000)
+  failureSound.play()
 }
 
 const onDeleteUpload = function () {
@@ -134,14 +141,17 @@ const onDeleteUpload = function () {
 }
 
 const onDeleteUploadSuccess = function (data) {
+  successSound.play()
   resetTable()
   $('#message_02').show()
   $('#message_02').text('File succesfully deleted.').fadeOut(5000)
 }
 
 const onDeleteUploadFailure = function () {
+   failureSound.play()
   $('#message_02').show()
   $('#message_02').text('Error on deleting file. Try again.').fadeOut(5000)
+
 }
 
 const resetTable = function () {
