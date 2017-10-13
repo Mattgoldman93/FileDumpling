@@ -25,6 +25,7 @@ const uploadEvents = require('./uploads/events')
 $(() => {
   setAPIOrigin(location, config)
   authEvents.addHandlers()
+  uploadEvents.addHandlers()
   $('.initial-hide').hide()
   $('#multipart-form-data').on('submit', uploadEvents.createUploadMultiPart)
 })
