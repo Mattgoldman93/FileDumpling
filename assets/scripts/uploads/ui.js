@@ -24,6 +24,14 @@ const onGetUploadsSuccess = function (data) {
   $('.updatedDate').each(function () {
     $(this).html($(this).html().split('T')[0])
   })
+  $('.td-tags').each(function () {
+    console.log($(this).children()[0].innerHTML)
+    if ($(this).children()[0].innerHTML) {
+      if ($(this).children()[0].innerHTML === '# ') {
+        $(this).children()[0].innerHTML = ''
+      }
+    }
+  })
   $('.hashtag').on('click', function () {
     const value = $(this).html().replace(/#/g, '')
     $('.uploads-table').html('')
