@@ -6,16 +6,20 @@ const showUploadsTemplate = require('../templates/uploads-table.handlebars')
 
 const success = function (data) {
   resetTable()
+  $('#message_02').show()
+  $('#message_02').text('Successfully uploaded a file!').fadeOut(5000)
   $('#multipart-form-data').trigger('reset')
 }
 
-const error = function (error) {
-  console.log('error is:', error)
+const error = function () {
+  $('#message_02').show()
+  $('#message_02').text('Error on uploading a file! Try again.').fadeOut(5000)
 }
 
 const onGetUploadsSuccess = function (data) {
   const showUploadsHtml = showUploadsTemplate({ uploads: data.uploads })
-  $('#message_02').text('File successfully uploaded.').fadeOut(5000)
+  $('#message_02').show()
+  $('#message_02').text('Here are the files!').fadeOut(5000)
   $('.uploads-table').append(showUploadsHtml)
   $('.edit-btn').on('click', onEditUpload)
   $('.delete-btn').on('click', onDeleteUpload)
@@ -27,7 +31,6 @@ const onGetUploadsSuccess = function (data) {
     $(this).html($(this).html().split('T')[0])
   })
   $('.td-tags').each(function () {
-    console.log($(this).children()[0].innerHTML)
     if ($(this).children()[0].innerHTML) {
       if ($(this).children()[0].innerHTML === '# ') {
         $(this).children()[0].innerHTML = ''
@@ -43,9 +46,9 @@ const onGetUploadsSuccess = function (data) {
   })
 }
 
-const onGetUploadsFailure = function (error) {
-  console.error(error)
-  $('#message_02').text('Error on uploading file. Try again.').fadeOut(5000)
+const onGetUploadsFailure = function () {
+  $('#message_02').show()
+  $('#message_02').text('Error on getting files. Try again.').fadeOut(5000)
 }
 
 const onEditUpload = function () {
@@ -54,6 +57,7 @@ const onEditUpload = function () {
   const tags = $(this).parent().siblings()[4]
   fileName.contentEditable = true
   tags.contentEditable = true
+  $('#message_02').show()
   $('#message_02').text('File succesfully edited.').fadeOut(5000)
   $(fileName).css('background-color', 'rgba(255, 255, 0, 0.5)') // Show user editable fields
   $(tags).css('background-color', 'rgba(255, 255, 0, 0.5)')
@@ -76,11 +80,6 @@ const onEditUpload = function () {
   })
 }
 
-const onEditUploadFailure = function (error) {
-  console.error(error)
-  $('#message_02').text('Error on editing file. Try again.').fadeOut(5000)
-}
-
 const onConfirmEdit = function (elementId, fileName, tags) {
   const newFileName = $(fileName).html()
   let newTags = $(tags).html().replace(/[^a-z0-9 ]/gi, '').split(' ')
@@ -100,13 +99,13 @@ const onConfirmEdit = function (elementId, fileName, tags) {
 }
 
 const onEditUploadSuccess = function (data) {
+  $('#message_02').show()
   $('#message_02').text('Success on editing file.').fadeOut(5000)
-  console.log(data)
   resetTable()
 }
 
-const onEditUploadFailure = function (error) {
-  console.log(error)
+const onEditUploadFailure = function () {
+  $('#message_02').show()
   $('#message_02').text('Error on editing file. Try again.').fadeOut(5000)
 }
 
@@ -135,13 +134,13 @@ const onDeleteUpload = function () {
 }
 
 const onDeleteUploadSuccess = function (data) {
-  console.log(data)
   resetTable()
-    $('#message_02').text('File succesfully deleted.').fadeOut(5000)
+  $('#message_02').show()
+  $('#message_02').text('File succesfully deleted.').fadeOut(5000)
 }
 
-const onDeleteUploadFailure = function (error) {
-  console.error(error)
+const onDeleteUploadFailure = function () {
+  $('#message_02').show()
   $('#message_02').text('Error on deleting file. Try again.').fadeOut(5000)
 }
 

@@ -16,9 +16,9 @@ const signUpSuccess = function (data) {
   resetFormFields()
 }
 
-const signUpFailure = function (error) {
+const signUpFailure = function () {
   $('#message').show()
-  $('#message').text('Failure on signing up. E-mail and/or password already token. Try again.').fadeOut(5000)
+  $('#message').text('Failure on signing up. E-mail and/or password already taken. Try again.').fadeOut(5000)
   resetFormFields()
 }
 
@@ -36,7 +36,7 @@ const signInSuccess = function (data) {
     .catch(uploadUi.onGetUploadsFailure)
 }
 
-const signInFailure = function (error) {
+const signInFailure = function () {
   $('#message').show()
   $('#message').text('Failure on signing in. Try again.').fadeOut(5000)
   resetFormFields()
@@ -49,7 +49,7 @@ const changePasswordSuccess = function (data) {
   resetFormFields()
 }
 
-const changePasswordFailure = function (error) {
+const changePasswordFailure = function () {
   $('#message').show()
   $('#message').text('Failure on changing password. Try again.').fadeOut(5000)
   resetFormFields()
@@ -67,12 +67,13 @@ const signOutSuccess = function (data) {
   resetFormFields()
 }
 
-const signOutFailure = function (error) {
+const signOutFailure = function () {
   $('#message').show()
   $('#message').text('Failure on signing out. Try Again.')
   $('#message').fadeOut(5000)
   resetFormFields()
-  
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
