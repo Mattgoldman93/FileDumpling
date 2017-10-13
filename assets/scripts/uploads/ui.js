@@ -5,10 +5,14 @@ const api = require('./api')
 const showUploadsTemplate = require('../templates/uploads-table.handlebars')
 
 const success = function (data) {
+  const successSound = $('#successSound')[0]
+  successSound.play()
   resetTable()
 }
 
 const error = function (error) {
+  const failureSound = $('#failureSound')[0]
+  failureSound.play()
   console.log('error is:', error)
 }
 
@@ -42,6 +46,8 @@ const onGetUploadsSuccess = function (data) {
 }
 
 const onGetUploadsFailure = function (error) {
+  const failureSound = $('#failureSound')[0]
+  failureSound.play()
   console.error(error)
 }
 
@@ -91,11 +97,15 @@ const onConfirmEdit = function (elementId, fileName, tags) {
 }
 
 const onEditUploadSuccess = function (data) {
+  const successSound = $('#successSound')[0]
+  successSound.play()
   console.log(data)
   resetTable()
 }
 
 const onEditUploadFailure = function (error) {
+  const failureSound = $('#failureSound')[0]
+  failureSound.play()
   console.log(error)
 }
 
@@ -124,11 +134,15 @@ const onDeleteUpload = function () {
 }
 
 const onDeleteUploadSuccess = function (data) {
+  const successSound = $('#successSound')[0]
+  successSound.play()
   console.log(data)
   resetTable()
 }
 
 const onDeleteUploadFailure = function (error) {
+  const failureSound = $('#failureSound')[0]
+  failureSound.play()
   console.error(error)
 }
 

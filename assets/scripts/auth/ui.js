@@ -9,6 +9,8 @@ const signUpSuccess = function (data) {
   $('#message').fadeOut(1800)
   $('input[type=text]').val('')
   $('input[type=password]').val('')
+  const successSound = $('#successSound')[0]
+  successSound.play()
 }
 
 const signInSuccess = function (data) {
@@ -22,6 +24,8 @@ const signInSuccess = function (data) {
 
   $('input s[type=text]').val('')
   $('input[type=password]').val('')
+  const successSound = $('#successSound')[0]
+  successSound.play()
 
   uploadApi.getUploads()
     .then(uploadUi.onGetUploadsSuccess)
@@ -33,6 +37,8 @@ const changePasswordSuccess = function (data) {
   $('#message').text('Password changed!')
   $('#message').fadeOut(1800)
   $('input[type=password]').val('')
+  const successSound = $('#successSound')[0]
+  successSound.play()
 }
 
 const signOutSuccess = function (data) {
@@ -45,9 +51,13 @@ const signOutSuccess = function (data) {
   store.user = null
 
   $('.uploads-table').html('')
+  const successSound = $('#successSound')[0]
+  successSound.play()
 }
 
 const failure = function (error) {
+  const failureSound = $('#failureSound')[0]
+  failureSound.play()
   console.error(error)
   $('#message').show()
   $('#message').text('You messed up')
