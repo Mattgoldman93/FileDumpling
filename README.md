@@ -1,6 +1,6 @@
 # FileDumpling
 
-###### FileDumpling is a simple web application to upload and download files.
+###### FileDumpling is a simple web application to upload and download files. Users can upload files, which are hosted with Amazon Web Services' S3 Bucket, and download the files to their local computer. For each file added, metadata is stored, using a back end application. Users can edit information about the files they upload themselves, but not for files upload by other users.
 
 ---
 
