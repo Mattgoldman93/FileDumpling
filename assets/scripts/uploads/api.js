@@ -9,7 +9,6 @@ const createEnc = function (data) {
   })
 }
 const createMulti = function (formData) {
-  console.log('formData is ', formData)
   return $.ajax({
     headers: {
       authorization: 'Token token=' + store.user.token
