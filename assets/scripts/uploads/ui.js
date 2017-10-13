@@ -6,25 +6,23 @@ const showUploadsTemplate = require('../templates/uploads-table.handlebars')
 
 const failureSound = $('#failureSound')[0]
 const successSound = $('#successSound')[0]
- 
+
 const success = function (data) {
   successSound.play()
   resetTable()
   $('#message_02').show()
-  $('#message_02').text('Successfully uploaded a file!').fadeOut(5000)
+  $('#message_02').text('Successfully uploaded a file!').fadeOut(3000)
   $('#multipart-form-data').trigger('reset')
 }
 
 const error = function () {
   $('#message_02').show()
-  $('#message_02').text('Error on uploading a file! Try again.').fadeOut(5000)
+  $('#message_02').text('Error on uploading a file! Try again.').fadeOut(3000)
   failureSound.play()
 }
 
 const onGetUploadsSuccess = function (data) {
   const showUploadsHtml = showUploadsTemplate({ uploads: data.uploads })
-  $('#message_02').show()
-  $('#message_02').text('Here are the files!').fadeOut(5000)
   $('.uploads-table').append(showUploadsHtml)
   $('.edit-btn').on('click', onEditUpload)
   $('.delete-btn').on('click', onDeleteUpload)
@@ -53,17 +51,17 @@ const onGetUploadsSuccess = function (data) {
 
 const onGetUploadsFailure = function () {
   $('#message_02').show()
-  $('#message_02').text('Error on getting files. Try again.').fadeOut(5000)
+  $('#message_02').text('Error on getting files. Try again.').fadeOut(3000)
 }
 
 const onEditUpload = function () {
   const elementId = $(this).parent().parent().attr('data-id')
   const fileName = $(this).parent().siblings()[0]
-  const tags = $(this).parent().siblings()[4]
+  const tags = $(this).parent().siblings()[2]
   fileName.contentEditable = true
   tags.contentEditable = true
   $('#message_02').show()
-  $('#message_02').text('File succesfully edited.').fadeOut(5000)
+  $('#message_02').text('File succesfully edited.').fadeOut(3000)
   $(fileName).css('background-color', 'rgba(255, 255, 0, 0.5)') // Show user editable fields
   $(tags).css('background-color', 'rgba(255, 255, 0, 0.5)')
   $(tags).html('')
@@ -106,13 +104,13 @@ const onConfirmEdit = function (elementId, fileName, tags) {
 const onEditUploadSuccess = function (data) {
   successSound.play()
   $('#message_02').show()
-  $('#message_02').text('Success on editing file.').fadeOut(5000)
+  $('#message_02').text('Success on editing file.').fadeOut(3000)
   resetTable()
 }
 
 const onEditUploadFailure = function () {
   $('#message_02').show()
-  $('#message_02').text('Error on editing file. Try again.').fadeOut(5000)
+  $('#message_02').text('Error on editing file. Try again.').fadeOut(3000)
   failureSound.play()
 }
 
@@ -144,14 +142,13 @@ const onDeleteUploadSuccess = function (data) {
   successSound.play()
   resetTable()
   $('#message_02').show()
-  $('#message_02').text('File succesfully deleted.').fadeOut(5000)
+  $('#message_02').text('File succesfully deleted.').fadeOut(3000)
 }
 
 const onDeleteUploadFailure = function () {
-   failureSound.play()
+  failureSound.play()
   $('#message_02').show()
-  $('#message_02').text('Error on deleting file. Try again.').fadeOut(5000)
-
+  $('#message_02').text('Error on deleting file. Try again.').fadeOut(3000)
 }
 
 const resetTable = function () {
