@@ -22,14 +22,15 @@ const createMulti = function (formData) {
   })
 }
 
-const getUploads = function () {
+const getUploads = function (data) {
   const token = store.user.token
   return $.ajax({
     url: config.apiOrigin + '/uploads',
     method: 'GET',
     headers: {
       authorization: 'Token token=' + token
-    }
+    },
+    data
   })
 }
 

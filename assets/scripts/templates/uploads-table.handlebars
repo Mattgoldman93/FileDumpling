@@ -18,9 +18,13 @@
 <tr data-id="{{upload.id}}">
   <td>{{upload.name}}</td>
   <td class="createdDate">{{upload.createdAt}}</td>
-  <td class="uploadedDate">{{upload.updatedAt}}</td>
+  <td class="updatedDate">{{upload.updatedAt}}</td>
   <td>{{upload.uploadedBy}}</td>
-  <td>{{upload.tags}}</td>
+  <td>
+    {{#each upload.tags}}
+      <a class="hashtag">#{{this}} </a>
+    {{/each}}
+  </td>
   <td><a href="{{upload.url}}"<button class="btn btn-success">Download</button></a></td>
   <td>
     {{#if upload.editable }}
