@@ -6,9 +6,9 @@
 
 ### Links:
 
-Back End Repo: https://github.com/4KnClone/FileBucket-Back-End
+Back End Repo: https://github.com/4KnClone/FileDumpling-Back-End
 Deployed Back End: https://enigmatic-beach-10306.herokuapp.com/
-Deployed Front End: https://4knclone.github.io/FileBucket-Front-End/
+Deployed Front End: https://4knclone.github.io/FileDumpling/
 
 ### Technologies Used:
   -HTML
